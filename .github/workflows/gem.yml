@@ -1,0 +1,43 @@
+name: "Build, test and release"
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  build:
+    name: Build + Publish
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+      - name: Set up Ruby 2.6
+        uses: actions/setup-ruby@v1
+        with:
+          version: 2.6.x
+      - run: gem install bundler
+      - run: bundle install --jobs 4 --retry 3
+      - run: bundle exec rake
+      - name: Publish to GPR
+        if: github.ref == 'refs/heads/master'
+        run: |
+          mkdir -p $HOME/.gem
+          touch $HOME/.gem/credentials
+          chmod 0600 $HOME/.gem/credentials
+          printf -- "---\n:github: Bearer ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
+          gem build *.gemspec
+          gem push --KEY github --host https://rubygems.pkg.github.com/${OWNER} *.gem
+        env:
+          OWNER: firstclasspostcodes
+          GEM_HOST_API_KEY: ${{secrets.GPR_AUTH_TOKEN}}
+      - name: Publish to RubyGems
+        if: github.ref == 'refs/heads/master'
+        run: |
+          mkdir -p $HOME/.gem
+          touch $HOME/.gem/credentials
+          chmod 0600 $HOME/.gem/credentials
+          printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
+          gem build *.gemspec
+          gem push *.gem
+        env:
+          GEM_HOST_API_KEY: ${{secrets.RUBYGEMS_AUTH_TOKEN}}

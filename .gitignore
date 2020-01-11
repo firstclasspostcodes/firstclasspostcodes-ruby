@@ -1,0 +1,9 @@
+/firstclasspostcodes-*.gem
+/Gemfile.lock
+.rvmrc
+Gemfile.lock
+tags
+vendor
+/.bundle/
+coverage/
+.idea/
