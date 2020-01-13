@@ -23,7 +23,10 @@ module Firstclasspostcodes
   end
 
   class Client
-    include Operations
+    # Utility module mixins
     include Events
+
+    # Include all API operations below
+    include Operations::GetPostcode
   end
 end

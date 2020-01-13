@@ -99,6 +99,14 @@ module Firstclasspostcodes
       yield(self) if block_given?
     end
 
+    def debug?
+      debug
+    end
+
+    def geo_json?
+      content == "geo+json"
+    end
+
     def protocol=(protocol)
       # remove :// from protocol
       @protocol = protocol.sub(%r{://}, "")
@@ -117,18 +125,15 @@ module Firstclasspostcodes
 
     def base_url
       path = [host, base_path].join("/").gsub(%r{/+}, "/")
-      "#{scheme}://#{path}".sub(%r{/+\z}, "")
+      "#{protocol}://#{path}".sub(%r{/+\z}, "")
     end
 
     def to_request_params
       params = {
-        # params: opts[:query_params] || {},
-        # method: opts[:method].to_sym.downcase,
         headers: {
           'x-api-key': api_key,
           accept: "application/#{content}; q=1.0, application/json; q=0.5",
         },
-        params_encoding: params_encoding,
         timeout: timeout,
         ssl_verifypeer: verify_ssl,
         ssl_verifyhost: verify_ssl_host ? 2 : 0,

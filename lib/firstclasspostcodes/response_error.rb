@@ -18,16 +18,11 @@ module Firstclasspostcodes
       @type = type
     end
 
-    def to_s
-      # "[#{type}] #{message} (#{@doc_url})"
-      message
-    end
-
     def message
       <<-MSG
-        The following "#{@type}" error was encountered:
-          #{message}
-        => See: #{@doc_url}
+        The following "#{type}" error was encountered:
+          #{super}
+        => See: #{doc_url}
       MSG
     end
   end
