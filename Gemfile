@@ -1,12 +1,14 @@
-source 'https://rubygems.org'
+# frozen_string_literal: true
+
+source "https://rubygems.org"
 
 gemspec
 
 group :development, :test do
+  gem "codecov", require: false
   gem "coveralls", require: false
-  gem "codecov", :require => false
-  gem "rspec"
   gem "rake"
+  gem "rspec"
 
   # Rubocop changes pretty quickly: new cops get added and old cops change
   # names or go into new namespaces. This is a library and we don't have

@@ -24,9 +24,9 @@ Layout/HeredocIndentation:
   Enabled: false
 
 Layout/LineLength:
+  Max: 150
   Exclude:
-    - "lib/stripe/resources/**/*.rb"
-    - "test/**/*.rb"
+    - "spec/**/*.rb"
 
 Metrics/BlockLength:
   Max: 40
@@ -47,7 +47,13 @@ Metrics/MethodLength:
   # probably too short).
   Max: 50
 
+Metrics/AbcSize:
+  Max: 18
+
 Metrics/ModuleLength:
+  Enabled: false
+
+Style/Documentation:
   Enabled: false
 
 Style/AccessModifierDeclarations:
