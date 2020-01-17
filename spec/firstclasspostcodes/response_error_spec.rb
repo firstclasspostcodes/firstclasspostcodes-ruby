@@ -3,14 +3,14 @@
 require "spec_helper"
 
 describe Firstclasspostcodes::ResponseError do
-  describe 'when the error is a hash' do
-    let(:error_object) {
+  describe "when the error is a hash" do
+    let(:error_object) do
       {
-        message: 'message',
-        docUrl: 'https://google.com/some-doc',
-        type: 'type',
+        message: "message",
+        docUrl: "https://google.com/some-doc",
+        type: "type",
       }
-    }
+    end
 
     subject { Firstclasspostcodes::ResponseError.new(error_object) }
 
@@ -25,10 +25,10 @@ describe Firstclasspostcodes::ResponseError do
     specify { expect(subject.doc_url).to eq error_object[:docUrl] }
   end
 
-  describe 'when the error is a message' do
-    let(:error_message) { 'message' }
+  describe "when the error is a message" do
+    let(:error_message) { "message" }
 
-    let(:error_type) { 'type' }
+    let(:error_type) { "type" }
 
     subject { Firstclasspostcodes::ResponseError.new(error_message, error_type) }
 

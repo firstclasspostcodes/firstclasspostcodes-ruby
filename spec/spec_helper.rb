@@ -28,7 +28,7 @@ RSpec.configure do |config|
 
   config.before(:each) do
     Typhoeus::Expectation.clear
-    
+
     uri = URI.parse(API_URL)
 
     Firstclasspostcodes.configure do |c|

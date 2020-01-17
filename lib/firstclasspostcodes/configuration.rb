@@ -108,9 +108,8 @@ module Firstclasspostcodes
     end
 
     def content=(content)
-      unless %w(json geo+json).include?(content)
-        raise StandardError, `"#{content}" is not a valid content-type`
-      end
+      raise StandardError, `"#{content}" is not a valid content-type` unless %w[json geo+json].include?(content)
+
       @content = content
     end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.shared_examples "a class that emits events" do
   specify { expect(subject).to respond_to(:on) }
 
