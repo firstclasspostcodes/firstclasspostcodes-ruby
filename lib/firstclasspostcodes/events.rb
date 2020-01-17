@@ -10,16 +10,14 @@ module Firstclasspostcodes
     end
 
     def off(event_name, handler_id)
-      event_symbol = event_name.to_sym
-      events[event_symbol]&.filter! do |handler|
+      events[event_name.to_sym]&.filter! do |handler|
         handler.object_id != handler_id
       end
       handler_id
     end
 
     def emit(event_name, *args)
-      event_symbol = event_name.to_sym
-      events[event_symbol]&.each { |handler| handler.call(*args) }
+      events[event_name.to_sym]&.each { |handler| handler.call(*args) }
     end
 
     def events

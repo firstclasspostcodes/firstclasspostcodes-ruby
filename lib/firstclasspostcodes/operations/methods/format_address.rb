@@ -16,14 +16,18 @@ module Firstclasspostcodes
 
           return data if type == "postcode"
 
-          raise StandardError, `Received index "#{index}" but no #{type} data.` if list[type].empty?
+          list = self[type.to_sym]
+
+          index = element.to_i
+
+          raise StandardError, `Received index "#{index}" but no #{type} data.` if list.empty?
 
           address = if type == "numbers"
-                      component = self[type][element]
+                      component = list[index]
                       join = ->(*args) { args.compact.reject(&:empty?).join(", ") }
                       join.call(component[:number], component[:building], component[:street])
                     else
-                      self[type][element]
+                      list[index]
                     end
 
           data.merge(address: address)

@@ -6,7 +6,7 @@ module Firstclasspostcodes
   class ResponseError < StandardError
     attr_reader :doc_url, :type
 
-    def initialize(obj, type)
+    def initialize(obj, type = nil)
       if obj.is_a?(Hash)
         super(obj[:message])
         @doc_url = obj[:docUrl]

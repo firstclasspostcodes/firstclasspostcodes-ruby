@@ -28,5 +28,6 @@ module Firstclasspostcodes
 
     # Include all API operations below
     include Operations::GetPostcode
+    include Operations::GetLookup
   end
 end

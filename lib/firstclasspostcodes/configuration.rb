@@ -14,7 +14,7 @@ module Firstclasspostcodes
     attr_reader :host
 
     # Defines the content type requested and returned
-    attr_accessor :content
+    attr_reader :content
 
     # Defines HTTP protocol to be used
     attr_reader :protocol
@@ -105,6 +105,13 @@ module Firstclasspostcodes
 
     def geo_json?
       content == "geo+json"
+    end
+
+    def content=(content)
+      unless %w(json geo+json).include?(content)
+        raise StandardError, `"#{content}" is not a valid content-type`
+      end
+      @content = content
     end
 
     def protocol=(protocol)
