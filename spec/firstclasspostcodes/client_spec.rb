@@ -27,6 +27,17 @@ describe Firstclasspostcodes::Client do
   end
 
   describe "#request" do
+    describe "when the request is successful" do
+      let(:response) { double(body: '{"a": 1 }') }
+
+      let(:request_params) { { method: :get, path: "/" } }
+
+      before(:each) { allow(subject).to receive(:call_request).with(kind_of(String), kind_of(Hash)).and_return(response) }
+
+      it "returns a parsed response" do
+        expect(subject.request(request_params)).to eq(a: 1)
+      end
+    end
   end
 
   describe "#call_request" do

@@ -16,12 +16,12 @@ module Firstclasspostcodes
           end
 
           if self[:streets]&.any?
-            return self[:numbers].each_with_index.map do |street, i|
+            return self[:streets].each_with_index.map do |street, i|
               %W[streets:#{i} #{join.call(street, suffix)}]
             end
           end
 
-          %W[postcode:0 #{suffix}]
+          [%W[postcode:0 #{suffix}]]
         end
       end
     end

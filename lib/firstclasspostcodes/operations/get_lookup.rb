@@ -25,7 +25,7 @@ module Firstclasspostcodes
 
         query_params =  { latitude: latitude, longitude: longitude, radius: radius }
 
-        unless latitude || longitude || within.call(latitude, longitude)
+        unless latitude && longitude && within.call(latitude, longitude)
           error_object = {
             message: "Parameter is invalid: #{query_params}",
             docUrl: "https://docs.firstclasspostcodes.com/operation/getLookup",
