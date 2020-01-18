@@ -9,6 +9,12 @@ jobs:
     name: Build + Publish
     runs-on: ubuntu-latest
 
+    services:
+      mock-api:
+        image: firstclasspostcodes/mock:latest
+        ports:
+          - '80:3000'
+
     steps:
       - uses: actions/checkout@master
       - name: Set up Ruby 2.6
@@ -17,7 +23,11 @@ jobs:
           version: 2.6.x
       - run: gem install bundler
       - run: bundle install --jobs 4 --retry 3
-      - run: bundle exec rake
+      - name: Rake
+        run: bundle exec rake
+        env:
+          API_URL: http://localhost:3000
+          API_KEY: '111111111111'
       - name: Publish to GPR
         if: github.ref == 'refs/heads/master'
         run: |

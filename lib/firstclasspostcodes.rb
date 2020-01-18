@@ -1,4 +1,10 @@
-require 'first-class-postcodes/version'
+# frozen_string_literal: true
+
+require "firstclasspostcodes/client"
+require "firstclasspostcodes/configuration"
+require "firstclasspostcodes/events"
+require "firstclasspostcodes/operations"
+require "firstclasspostcodes/version"
 
 module Firstclasspostcodes
   class << self
@@ -14,5 +20,14 @@ module Firstclasspostcodes
         Configuration.default
       end
     end
+  end
+
+  class Client
+    # Utility module mixins
+    include Events
+
+    # Include all API operations below
+    include Operations::GetPostcode
+    include Operations::GetLookup
   end
 end
