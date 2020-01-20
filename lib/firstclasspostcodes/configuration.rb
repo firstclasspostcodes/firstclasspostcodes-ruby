@@ -81,7 +81,7 @@ module Firstclasspostcodes
       @content = "json"
       @protocol = "https"
       @base_path = "/data"
-      @timeout = 0
+      @timeout = 30
       @verify_ssl = true
       @verify_ssl_host = true
       @cert_file = nil
