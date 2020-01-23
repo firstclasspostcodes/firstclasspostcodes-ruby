@@ -51,7 +51,7 @@ We also host this gem on the [GitHub Package Registry](https://github.com/firstc
 
 ```ruby
 source "https://rubygems.pkg.github.com/firstclasspostcodes" do
-  gem "firstclasspostcodes", "0.0.1"
+  gem "firstclasspostcodes", "0.1.0"
 end
 ```
 
