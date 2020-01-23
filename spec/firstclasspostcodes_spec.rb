@@ -95,9 +95,9 @@ describe Firstclasspostcodes do
     let(:config) { Firstclasspostcodes::Configuration.new }
 
     it "defaults to 0" do
-      expect(Firstclasspostcodes::Configuration.default.timeout).to eq(0)
-      expect(config.timeout).to eq(0)
-      expect(config.to_request_params[:timeout]).to eq(0)
+      expect(Firstclasspostcodes::Configuration.default.timeout).to eq(30)
+      expect(config.timeout).to eq(30)
+      expect(config.to_request_params[:timeout]).to eq(30)
     end
 
     it "can be customized" do
