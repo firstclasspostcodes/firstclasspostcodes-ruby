@@ -15,7 +15,7 @@ group :development, :test do
   # `Gemfile.lock` checked in, so to prevent good builds from suddenly going
   # bad, pin to a specific version number here. Try to keep this relatively
   # up-to-date, but it's not the end of the world if it's not.
-  gem "rubocop", "0.80.1", require: false
+  gem "rubocop", "0.81.0", require: false
 
   platforms :mri do
     gem "byebug"
